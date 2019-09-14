@@ -1,4 +1,7 @@
+@import "./variables.scss";
+
 body {
+  font-size: 16px;
   margin: 0;
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -7,4 +10,23 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+button {
+  font-size: 16px;
+}
+
+.button-rf {
+  padding: 0.7rem 1.5rem;
+  border-radius: 24px;
+  border: none;
+  background: $main-color;
+  color: #192027;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background: $main-color-1;
+  }
 }

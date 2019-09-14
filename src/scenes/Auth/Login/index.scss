@@ -1,3 +1,5 @@
+@import "#/styles/variables.scss";
+
 $root-login-color: #fff;
 
 .block-authorization-root {
@@ -9,15 +11,19 @@ $root-login-color: #fff;
 .block-authorization {
   padding: 15px;
 
-  &__inner {
-    width: 100%;
-  }
-
   &__group {
+    &,
+    input,
+    .MuiFormControl-root {
+      width: 100%;
+    }
   }
 
   &__submit {
-    width: 100%;
+    &,
+    button {
+      width: 100%;
+    }
     margin-top: 15px;
   }
 }

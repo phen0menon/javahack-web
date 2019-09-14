@@ -1,9 +1,15 @@
-import Index from "#/scenes/Index";
+import Auth from "#/scenes/Auth";
+import Main from "#/scenes/Main";
 
 export default [
   {
     exact: true,
     path: "/",
-    component: Index,
+    component: Auth,
+  },
+  {
+    exact: false,
+    path: "/cabinet",
+    component: Main,
   },
 ];

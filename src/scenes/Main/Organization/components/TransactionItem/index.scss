@@ -1,0 +1,46 @@
+@import "#/styles/variables.scss";
+
+.organization-transaction-item__inner {
+  background: #fff;
+  padding: 15px 15px 20px 15px;
+}
+
+.organization-transaction-item {
+  &__title {
+    font-size: 1.35rem;
+    font-weight: 500;
+  }
+
+  &__summary {
+    margin-top: 5px;
+
+    span {
+      color: #ccc;
+      font-size: 0.8rem;
+    }
+
+    &__value {
+      margin-top: 5px;
+      font-size: 1rem;
+    }
+  }
+
+  &__status {
+    margin-top: 20px;
+
+    span {
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+      padding: 5px 20px;
+      border-radius: 24px;
+
+      &.finished {
+        background: $green-color;
+      }
+
+      &.active {
+        background: $main-color-1;
+      }
+    }
+  }
+}
