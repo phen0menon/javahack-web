@@ -1,0 +1,23 @@
+$root-login-color: #fff;
+
+.block-authorization-root {
+  display: block;
+  height: 100vh;
+  background: $root-login-color;
+}
+
+.block-authorization {
+  padding: 15px;
+
+  &__inner {
+    width: 100%;
+  }
+
+  &__group {
+  }
+
+  &__submit {
+    width: 100%;
+    margin-top: 15px;
+  }
+}
