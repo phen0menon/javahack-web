@@ -23,8 +23,22 @@ const AddTransactionModal = props => {
     cost: "",
   });
 
+  const isStateInputsValid = () => {
+    const { title, cost } = values;
+
+    // Check the length of inputs
+    if (title.length <= 0 || cost.length <= 0 || Number.isInteger(cost)) {
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = () => {
-    console.log("mfk");
+    if (isStateInputsValid()) {
+      // do stuff...
+    } else {
+      console.error("Not all inputs are valid!");
+    }
   };
 
   const handleChange = field => evt => {
@@ -61,6 +75,7 @@ const AddTransactionModal = props => {
                 value={values.title}
                 onChange={handleChange("title")}
                 margin="0"
+                required
               />
             </div>
             <div>
@@ -71,6 +86,7 @@ const AddTransactionModal = props => {
                 value={values.cost}
                 onChange={handleChange("cost")}
                 margin="normal"
+                required
               />
             </div>
             <div className="add-transaction-modal__button-block">

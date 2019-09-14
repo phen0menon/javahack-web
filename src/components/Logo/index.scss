@@ -1,0 +1,28 @@
+$logo-size: 37px;
+
+.rf-logo {
+  &__inner {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__box {
+    background: #fff200;
+    width: $logo-size;
+    height: $logo-size;
+    border: 1px solid;
+
+    img {
+      margin-top: 1px;
+    }
+  }
+
+  &__brand {
+    margin-left: 10px;
+    height: $logo-size;
+
+    img {
+      height: $logo-size;
+    }
+  }
+}

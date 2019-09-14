@@ -6,6 +6,28 @@ $root-login-color: #fff;
   display: block;
   height: 100vh;
   background: $root-login-color;
+
+  &__box {
+    transition: 0.25s;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 50px;
+
+    &__fetching {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    &.MuiGrid-item {
+      margin-top: 50px;
+    }
+  }
+}
+
+a.block-authorization__alt {
+  font-size: 12px;
+  text-decoration: none;
 }
 
 .block-authorization {
@@ -16,6 +38,11 @@ $root-login-color: #fff;
     input,
     .MuiFormControl-root {
       width: 100%;
+    }
+
+    &__alt {
+      margin: 16px 0 8px 0;
+      text-align: center;
     }
   }
 

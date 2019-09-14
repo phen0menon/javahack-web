@@ -6,8 +6,8 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import logoIcon from "#/assets/img/logo-icon.svg";
-import logoBrand from "#/assets/img/logo-brand.svg";
+import Logo from "#/components/Logo";
+import profileDefault from "#/assets/img/profile_default.jpg";
 import { ReactComponent as CabinetIcon } from "#/assets/img/cabinet-icon.svg";
 import { ReactComponent as OrdersIcon } from "#/assets/img/orders-icon.svg";
 import { ReactComponent as SettingsIcon } from "#/assets/img/settings-icon.svg";
@@ -48,37 +48,38 @@ const Sidebar = props => {
     >
       <div className={classes.toolbar}>
         <div className="toolbar-logo">
-          <div className="toolbar-logo__inner">
-            <div className="toolbar-logo__box">
-              <img src={logoIcon} alt="" />
-            </div>
-            <div className="toolbar-logo__brand">
-              <img src={logoBrand} alt="" />
-            </div>
-          </div>
+          <Logo />
         </div>
       </div>
       <div className="toolbar-items">
-        <List>
-          <ListItem button component={Link} to={`${match.url}`}>
-            <ListItemIcon>
-              <CabinetIcon />
-            </ListItemIcon>
-            <ListItemText primary="Главная" />
-          </ListItem>
-          <ListItem button component={Link} to={`${match.url}/organization`}>
-            <ListItemIcon>
-              <OrdersIcon />
-            </ListItemIcon>
-            <ListItemText primary="Организация" />
-          </ListItem>
-          <ListItem button component={Link} to={`${match.url}/settings`}>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Настройки" />
-          </ListItem>
-        </List>
+        <div className="toolbar-items__navigation">
+          <List>
+            <ListItem button component={Link} to={`${match.url}`}>
+              <ListItemIcon>
+                <CabinetIcon />
+              </ListItemIcon>
+              <ListItemText primary="Главная" />
+            </ListItem>
+            <ListItem button component={Link} to={`${match.url}/organization`}>
+              <ListItemIcon>
+                <OrdersIcon />
+              </ListItemIcon>
+              <ListItemText primary="Организация" />
+            </ListItem>
+            <ListItem button component={Link} to={`${match.url}/settings`}>
+              <ListItemIcon>
+                <SettingsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Настройки" />
+            </ListItem>
+          </List>
+        </div>
+        <div className="toolbar-items__badge">
+          <div className="toolbar-items__badge__avatar">
+            <img src={profileDefault} alt="" />
+          </div>
+          <div className="toolbar-items__badge__title">Мастер Йода</div>
+        </div>
       </div>
     </Drawer>
   );

@@ -35,7 +35,7 @@ const CabinetScene = props => {
         <Switch>
           <Route
             path={`${match.url}`}
-            exact
+            exact={true}
             render={props => (
               <Page title="Личный кабинет">
                 <Cabinet {...props} />
@@ -44,6 +44,7 @@ const CabinetScene = props => {
           />
 
           <Route
+            exact={true}
             path={`${match.url}/organization`}
             render={props => (
               <Page title="Организация">

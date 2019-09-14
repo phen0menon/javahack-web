@@ -1,39 +1,42 @@
 $toolbar-item-hover-bg: rgba(255, 219, 0, 0.25);
 $toolbar-item-color: #7d8894;
 $toolbar-item-color-active: #000;
-$logo-size: 37px;
 
 .toolbar-logo {
   padding: 30px;
-
-  &__inner {
-    display: flex;
-    flex-direction: row;
-  }
-
-  &__box {
-    background: #fff200;
-    width: $logo-size;
-    height: $logo-size;
-    border: 1px solid;
-
-    img {
-      margin-top: 1px;
-    }
-  }
-
-  &__brand {
-    margin-left: 10px;
-    height: $logo-size;
-
-    img {
-      height: $logo-size;
-    }
-  }
 }
 
 .toolbar-items {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  height: 100%;
   margin-top: 20px;
+
+  &__navigation {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__badge {
+    display: flex;
+    align-items: center;
+    margin: 25px 0 25px 30px;
+
+    &__avatar {
+      img {
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        height: 35px;
+        width: 35px;
+      }
+    }
+
+    &__title {
+      margin-left: 0.6rem;
+    }
+  }
 
   .MuiList-root {
     padding-left: 18px;

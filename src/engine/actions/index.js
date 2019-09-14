@@ -18,6 +18,8 @@ export const createStatefulAction = action => [
 ];
 
 const TEST_ACTION_TYPES = createActionTypeGroup([...createStatefulAction("TEST")], "schedule");
+// TODO
+// const UI_ACTION_TYPES = createActionTypeGroup([])
 
 export default {
   TEST_ACTION_TYPES,
