@@ -1,0 +1,31 @@
+.add-transaction-modal {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 19px 38px rgba(0, 0, 0, 0.1), 0px 15px 12px rgba(0, 0, 0, 0.02);
+  padding: 24px;
+
+  .MuiFormControl-root {
+    width: 100%;
+  }
+
+  p {
+    font-size: 14px;
+    color: #7D8894;
+    max-width: 325px;
+  }
+
+  &__title {
+    span {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+
+  &__button-block {
+    margin-top: 16px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
