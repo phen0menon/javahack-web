@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { saveToken } from "#/engine/util";
+import { ReactComponent as LoginIcon } from "#/assets/img/icon-login.svg";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
@@ -104,7 +105,8 @@ const Login = props => {
                       className="button-rf button-rf__strict"
                       disabled={fetching}
                     >
-                      Войти
+                      <LoginIcon style={{ width: 18, height: 18 }} />
+                      <span className="ml-1">Войти</span>
                     </Button>
                   </div>
 

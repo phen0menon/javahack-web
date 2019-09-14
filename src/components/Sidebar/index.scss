@@ -50,7 +50,7 @@ $toolbar-item-color-active: #000;
         fill: $toolbar-item-color;
       }
 
-      &:hover {
+      &:hover, &.sidebarListItemLinkActive {
         color: $toolbar-item-color-active;
         background: $toolbar-item-hover-bg;
 

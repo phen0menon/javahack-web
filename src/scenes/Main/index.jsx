@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Switch, Redirect, Route, withRouter } from "react-router";
 import { makeStyles } from "@material-ui/core/styles";
+import { isAuthenticated } from "#/engine/util";
 import Sidebar from "#/components/Sidebar";
 import Page from "#/components/Page";
 import Cabinet from "./Cabinet";
@@ -13,7 +14,6 @@ const useStyles = makeStyles(theme => ({
   root: { display: "flex" },
   content: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3),
   },
   toolbar: theme.mixins.toolbar,
@@ -21,11 +21,11 @@ const useStyles = makeStyles(theme => ({
 
 const CabinetScene = props => {
   const classes = useStyles();
-  const { authenticated, match } = props;
+  const { match } = props;
 
-  // if (!authenticated) {
-  //   return <Redirect to="/" />;
-  // }
+  if (!isAuthenticated()) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className={classes.root}>

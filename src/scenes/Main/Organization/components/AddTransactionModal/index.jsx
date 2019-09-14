@@ -1,9 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
-import TextField from "@material-ui/core/TextField";
+import { Modal, Backdrop, Fade, TextField } from "@material-ui/core";
 import "./index.scss";
 
 const useStyles = makeStyles(theme => ({
@@ -62,11 +59,9 @@ const AddTransactionModal = props => {
         <div className="add-transaction-modal">
           <form onSubmit={handleSubmit} autoComplete="off">
             <div className="add-transaction-modal__title">
-              <span>Завершение сделки</span>
+              <span>Создание новой сделки</span>
             </div>
-            <p>
-              Отправьте результат сделки на согласование заказчику, чтобы успешно вывести средства
-            </p>
+            <p>Введите данные заказа, чтобы отправить заказчику для безопасной сделки.</p>
             <div>
               <TextField
                 id="title"
@@ -74,14 +69,14 @@ const AddTransactionModal = props => {
                 className={classes.textField}
                 value={values.title}
                 onChange={handleChange("title")}
-                margin="0"
+                margin="none"
                 required
               />
             </div>
             <div>
               <TextField
                 id="cost"
-                label="Стоимость сделки"
+                label="Сумма сделки"
                 className={classes.textField}
                 value={values.cost}
                 onChange={handleChange("cost")}
@@ -90,7 +85,7 @@ const AddTransactionModal = props => {
               />
             </div>
             <div className="add-transaction-modal__button-block">
-              <button className="button-rf w-100">Завершить и отправить заказчику</button>
+              <button className="button-rf w-100">Создать сделку</button>
             </div>
           </form>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import routes from "#/routes/app";
 import { Route, Switch } from "react-router";

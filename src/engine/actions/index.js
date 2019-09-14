@@ -1,5 +1,7 @@
 const prefixes = {
   session: "%%SESSION",
+  transaction: "%%transaction",
+  ui: "%%interface",
 };
 
 export const createActionTypeGroup = (actions, prefix) =>
@@ -17,10 +19,13 @@ export const createStatefulAction = action => [
   `${action}_FAIL`,
 ];
 
-const TEST_ACTION_TYPES = createActionTypeGroup([...createStatefulAction("TEST")], "schedule");
-// TODO
-// const UI_ACTION_TYPES = createActionTypeGroup([])
+const TRANSACTION_ACTION_TYPES = createActionTypeGroup(
+  [...createStatefulAction("TRANSACTION_ADD")],
+  "transaction",
+);
+
+const UI_ACTION_TYPES = createActionTypeGroup(["SET_ACTIVE_MENU_ITEM"], "ui");
 
 export default {
-  TEST_ACTION_TYPES,
+  UI_ACTION_TYPES,
 };
