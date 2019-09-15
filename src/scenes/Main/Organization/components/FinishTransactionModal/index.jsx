@@ -11,51 +11,35 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AddTransactionModal = props => {
+const FinishTransactionModal = props => {
   const { isOpen, handleClose } = props;
   const classes = useStyles();
 
-  const [fetching, setFetching] = React.useState(false);
-  const [values, setValues] = React.useState({
-    memo: "",
-    targetPrice: "",
-  });
+  const transactionData = {
+    title: "qwerty",
+    cost: 10000,
+  };
 
   const isStateInputsValid = () => {
-    const { memo, targetPrice } = values;
-
+    const { title, cost } = transactionData;
     // Check the length of inputs
-    if (memo.length <= 0 || targetPrice.length <= 0 || Number.isInteger(targetPrice)) {
+    if (title.length <= 0 || cost.length <= 0 || !Number.isInteger(cost)) {
       return false;
     }
     return true;
   };
 
-  const handleSubmit = evt => {
-    evt.preventDefault();
+  const handleSubmit = () => {
     if (isStateInputsValid()) {
-      setFetching(true);
-      props
-        .createTransaction(values)
-        .then(() => {
-          // do some stuff...
-          setFetching(false);
-        })
-        .catch(() => {
-          setFetching(false);
-        });
+      alert("Finished!");
     } else {
       console.error("Not all inputs are valid!");
     }
   };
 
-  const handleChange = field => evt => {
-    setValues({ ...values, [field]: evt.target.value });
-  };
-
   return (
     <Modal
-      aria-labelledby="transition-modal-memo"
+      aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
       className={classes.modal}
       open={isOpen}
@@ -70,35 +54,35 @@ const AddTransactionModal = props => {
         <div className="add-transaction-modal">
           <form onSubmit={handleSubmit} autoComplete="off">
             <div className="add-transaction-modal__title">
-              <span>Создание новой сделки</span>
+              <span>Завершение сделки</span>
             </div>
-            <p>Введите данные заказа, чтобы отправить заказчику для безопасной сделки.</p>
+            <p>
+              Отправьте результат сделки на согласование заказчику, чтобы успешно вывести средства.
+            </p>
             <div>
               <TextField
-                id="memo"
+                id="title"
                 label="Название сделки"
                 className={classes.textField}
-                value={values.memo}
-                onChange={handleChange("memo")}
+                value={transactionData.title}
                 margin="none"
                 required
+                disabled
               />
             </div>
             <div>
               <TextField
-                id="targetPrice"
+                id="cost"
                 label="Сумма сделки"
                 className={classes.textField}
-                value={values.targetPrice}
-                onChange={handleChange("targetPrice")}
+                value={transactionData.cost}
                 margin="normal"
                 required
+                disabled
               />
             </div>
             <div className="add-transaction-modal__button-block">
-              <button className="button-rf w-100" disabled={fetching}>
-                Создать сделку
-              </button>
+              <button className="button-rf w-100">Завершить и отправить заказчику</button>
             </div>
           </form>
         </div>
@@ -107,4 +91,4 @@ const AddTransactionModal = props => {
   );
 };
 
-export default AddTransactionModal;
+export default FinishTransactionModal;

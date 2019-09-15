@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { saveToken } from "#/engine/util";
 import { ReactComponent as LoginIcon } from "#/assets/img/icon-login.svg";
+import { login } from "#/engine/actions/user";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
@@ -35,15 +36,19 @@ const Login = props => {
   const handleSubmit = evt => {
     evt.preventDefault();
 
+    const { login, password } = inputValues;
+
     setFetching(true);
 
-    setTimeout(() => {
-      setFetching(false);
-
-      // assume if success
-      saveToken("daskdkaskdsakdaskdsak");
-      props.history.push("/cabinet");
-    }, 2000);
+    props
+      .login({ login, password })
+      .then(json => {
+        setFetching(false);
+        props.history.push("/cabinet");
+      })
+      .then(err => {
+        setFetching(false);
+      });
   };
 
   const handleChange = inputType => evt =>
@@ -127,7 +132,9 @@ const Login = props => {
 
 const mapStateToProps = state => ({});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  login,
+};
 
 export default withRouter(
   connect(

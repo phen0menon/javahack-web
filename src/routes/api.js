@@ -1,7 +1,13 @@
-export const hostname = "http://localhost:3000";
+export const hostnameEmulator = "http://95.216.137.74:8080/javahack-raiff-emulator-0.0.1-SNAPSHOT/";
+export const hostnameCore = "http://95.216.137.74:8080/javahack-bugs-limited-0.0.1-SNAPSHOT/";
 
-const getAbsoluteUrl = route => `${hostname}/${route}`;
+const getEmulatorUrl = route => `${hostnameEmulator}/${route}`;
+const getCoreUrl = route => `${hostnameCore}/${route}`;
 
 export default {
-  test: getAbsoluteUrl("test"),
+  register: getEmulatorUrl("user/reg"),
+  login: getEmulatorUrl("user/login"),
+
+  createTransfer: getCoreUrl("create"),
+  getTransfers: id => getCoreUrl(`get_by_user/${id}`),
 };
