@@ -1,24 +1,27 @@
 import React, { useEffect } from "react";
 import TransactionItem from "./components/TransactionItem";
 import AddTransactionModal from "./components/AddTransactionModal";
-import FinishTransactionModal from "./components/FinishTransactionModal";
+import {
+  getTransactions,
+  createTransaction,
+  changeTransaction,
+} from "#/engine/actions/transactions";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
+import { postRequest } from "#/agent";
+import apiRoutes from "#/routes/api";
+import _ from "lodash";
 import "./index.scss";
-import { getTransactions, createTransaction } from "#/engine/actions/transactions";
 
 const Organization = props => {
   const [modals, setModals] = React.useState({
     addModal: false,
     finishModal: false,
   });
-  const [currentTransactionId, setCurrentTransactionId] = React.useState("");
 
   useEffect(() => {
     props.getTransactions();
   }, []);
-
-  const [finishModalData, setFinishModalData] = React.useState({});
 
   const toggleModal = modal => evt => {
     setModals({ ...modals, [modal]: !modals[modal] });
@@ -28,8 +31,24 @@ const Organization = props => {
     setModals({ ...modals, [modal]: false });
   };
 
+  const sendCheckedUrl = (id, checked, errorsCallback) => {
+    postRequest(apiRoutes.checkTransfer(id, checked))
+      .then(json => {
+        if (_.isEmpty(json)) {
+          alert("Денег нет!");
+          errorsCallback();
+        } else {
+          changeTransaction(json.id, json);
+        }
+      })
+      .catch(err => {
+        alert("Ошибочка");
+        errorsCallback();
+      });
+  };
+
   const renderedTransactions = props.transactions.map((transaction, key) => (
-    <TransactionItem onClick={setFinishModalData} data={transaction} />
+    <TransactionItem data={transaction} sendCheckedUrl={sendCheckedUrl} />
   ));
 
   return (
@@ -58,10 +77,6 @@ const Organization = props => {
         handleClose={closeModal("addModal")}
         createTransaction={props.createTransaction}
       />
-      <FinishTransactionModal
-        isOpen={modals["finishModal"]}
-        handleClose={closeModal("finishModal")}
-      />
       {/* <ShareTransactionUrl
         isOpen={modals["shareModal"]}
         handleClose={closeModal("shareModal")}
@@ -78,6 +93,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   getTransactions,
   createTransaction,
+  changeTransaction,
 };
 
 export default connect(

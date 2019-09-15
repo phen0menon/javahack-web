@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Switch, Redirect, Route, withRouter } from "react-router";
 import Page from "#/components/Page";
 import ApproveForm from "./ApproveForm";
+import FinishForm from "./FinishForm";
+
 
 const CustomerScene = props => {
   const { match } = props;
@@ -17,6 +19,15 @@ const CustomerScene = props => {
             render={props => (
               <Page title="Подтверждение сделки">
                 <ApproveForm {...props} />
+              </Page>
+            )}
+          />
+          <Route
+            path={`${match.url}/finalize`}
+            exact={true}
+            render={props => (
+              <Page title="Завершение сделки">
+                <FinishForm {...props} />
               </Page>
             )}
           />

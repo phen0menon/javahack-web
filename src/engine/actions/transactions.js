@@ -36,3 +36,10 @@ export const createTransaction = data => (dispatch, getState) => {
       dispatch({ type: ActionTypes.TRANSACTION_ACTION_TYPES.TRANSACTION_ADD_FAIL });
     });
 };
+
+export const changeTransaction = (id, data) => (dispatch, getState) => {
+  dispatch({
+    type: ActionTypes.TRANSACTION_ACTION_TYPES.TRANSACTION_CHANGE,
+    payload: { id, data },
+  });
+};

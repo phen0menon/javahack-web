@@ -32,12 +32,18 @@
   }
 
   &__status {
+    display: flex;
+    justify-content: space-between;
     margin-top: 20px;
 
-    span {
-      margin-bottom: 5px;
+    .MuiFormControlLabel-root {
+      margin-right: 0;
+    }
+
+    &-block {
+      margin-bottom: 2px;
       font-size: 0.9rem;
-      padding: 5px 20px;
+      padding: 10px 20px;
       border-radius: 24px;
 
       &.finished {

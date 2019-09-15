@@ -19,6 +19,12 @@ export default createReducer(
         data: [...state.data, safeTransfer],
       };
     },
+
+    [ActionTypes.TRANSACTION_ACTION_TYPES.TRANSACTION_CHANGE]: (state, action) => {
+      const idx = state.data.findIndex(trans => trans.id === action.id);
+      const nextData = (state.data[idx] = action.data);
+      return { ...state, data: nextData };
+    },
   },
   initialState,
 );

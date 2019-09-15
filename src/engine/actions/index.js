@@ -21,7 +21,11 @@ export const createStatefulAction = action => [
 ];
 
 const TRANSACTION_ACTION_TYPES = createActionTypeGroup(
-  [...createStatefulAction("TRANSACTION_ADD"), ...createStatefulAction("GET_TRANSACTIONS")],
+  [
+    ...createStatefulAction("TRANSACTION_ADD"),
+    ...createStatefulAction("GET_TRANSACTIONS"),
+    "TRANSACTION_CHANGE",
+  ],
   "transaction",
 );
 
