@@ -47,9 +47,11 @@ const Organization = props => {
       });
   };
 
-  const renderedTransactions = props.transactions.map((transaction, key) => (
-    <TransactionItem data={transaction} sendCheckedUrl={sendCheckedUrl} />
-  ));
+  const renderedTransactions = props.transactions.length
+    ? props.transactions.map((transaction, key) => (
+        <TransactionItem data={transaction} sendCheckedUrl={sendCheckedUrl} />
+      ))
+    : "";
 
   return (
     <div className="main-scene-screen organization-screen">

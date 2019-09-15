@@ -38,6 +38,7 @@ export const createTransaction = data => (dispatch, getState) => {
 };
 
 export const changeTransaction = (id, data) => (dispatch, getState) => {
+  console.log("asdf");
   dispatch({
     type: ActionTypes.TRANSACTION_ACTION_TYPES.TRANSACTION_CHANGE,
     payload: { id, data },
