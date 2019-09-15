@@ -11,15 +11,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const valuesInitialState = {
+  memo: "",
+  targetPrice: "",
+};
+
 const AddTransactionModal = props => {
-  const { isOpen, handleClose } = props;
+  const { isOpen, handleClose, tokenUrlProp = "" } = props;
   const classes = useStyles();
 
   const [fetching, setFetching] = React.useState(false);
-  const [values, setValues] = React.useState({
-    memo: "",
-    targetPrice: "",
-  });
+  const [tokenUrl, setTokenUrl] = React.useState(tokenUrlProp);
+  const [values, setValues] = React.useState(valuesInitialState);
 
   const isStateInputsValid = () => {
     const { memo, targetPrice } = values;
@@ -37,9 +40,10 @@ const AddTransactionModal = props => {
       setFetching(true);
       props
         .createTransaction(values)
-        .then(() => {
-          // do some stuff...
+        .then(json => {
           setFetching(false);
+          setTokenUrl(json.linkForSecondUser);
+          // handleClose();
         })
         .catch(() => {
           setFetching(false);
@@ -47,6 +51,13 @@ const AddTransactionModal = props => {
     } else {
       console.error("Not all inputs are valid!");
     }
+  };
+
+  const handleCloseAfterSharing = () => {
+    setFetching(false);
+    setTokenUrl("");
+    setValues(valuesInitialState);
+    handleClose();
   };
 
   const handleChange = field => evt => {
@@ -68,39 +79,66 @@ const AddTransactionModal = props => {
     >
       <Fade in={isOpen}>
         <div className="add-transaction-modal">
-          <form onSubmit={handleSubmit} autoComplete="off">
-            <div className="add-transaction-modal__title">
-              <span>Создание новой сделки</span>
+          {!tokenUrl && (
+            <form onSubmit={handleSubmit} autoComplete="off">
+              <div className="add-transaction-modal__title">
+                <span>Создание новой сделки</span>
+              </div>
+              <p>Введите данные заказа, чтобы отправить заказчику для безопасной сделки.</p>
+              <div>
+                <TextField
+                  id="memo"
+                  label="Название сделки"
+                  className={classes.textField}
+                  value={values.memo}
+                  onChange={handleChange("memo")}
+                  margin="none"
+                  required
+                />
+              </div>
+              <div>
+                <TextField
+                  id="targetPrice"
+                  label="Сумма сделки"
+                  className={classes.textField}
+                  value={values.targetPrice}
+                  onChange={handleChange("targetPrice")}
+                  margin="normal"
+                  required
+                />
+              </div>
+              <div className="add-transaction-modal__button-block">
+                <button className="button-rf w-100" disabled={fetching || tokenUrl}>
+                  Создать сделку
+                </button>
+              </div>
+            </form>
+          )}
+
+          {tokenUrl && (
+            <div className="add-transaction-modal__success" styles={{ margin: 20 }}>
+              <div className="add-transaction-modal__title">
+                <span>Поделитесь ссылкой с заказчиком</span>
+                <p>
+                  Почти готово. Отправьте эту ссылку заказчику, чтобы он смог подтвердить сделку
+                </p>
+                <div>
+                  <TextField
+                    id="token_url"
+                    className={classes.textField}
+                    value={tokenUrl}
+                    margin="none"
+                    disabled
+                  />
+                </div>
+                <div className="add-transaction-modal__button-block">
+                  <button className="button-rf w-100" onClick={handleCloseAfterSharing}>
+                    Подтвердить
+                  </button>
+                </div>
+              </div>
             </div>
-            <p>Введите данные заказа, чтобы отправить заказчику для безопасной сделки.</p>
-            <div>
-              <TextField
-                id="memo"
-                label="Название сделки"
-                className={classes.textField}
-                value={values.memo}
-                onChange={handleChange("memo")}
-                margin="none"
-                required
-              />
-            </div>
-            <div>
-              <TextField
-                id="targetPrice"
-                label="Сумма сделки"
-                className={classes.textField}
-                value={values.targetPrice}
-                onChange={handleChange("targetPrice")}
-                margin="normal"
-                required
-              />
-            </div>
-            <div className="add-transaction-modal__button-block">
-              <button className="button-rf w-100" disabled={fetching}>
-                Создать сделку
-              </button>
-            </div>
-          </form>
+          )}
         </div>
       </Fade>
     </Modal>

@@ -12,11 +12,11 @@ export default createReducer(
       data: action.payload,
     }),
 
-    [ActionTypes.TRANSACTION_ACTION_TYPES.CREATE_TRANSACTIONS_SUCCEED]: (state, action) => {
+    [ActionTypes.TRANSACTION_ACTION_TYPES.TRANSACTION_ADD_SUCCEED]: (state, action) => {
       const { safeTransfer } = action.payload;
       return {
         ...state,
-        data: { ...state.data, safeTransfer },
+        data: [...state.data, safeTransfer],
       };
     },
   },

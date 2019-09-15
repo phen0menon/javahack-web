@@ -9,5 +9,9 @@ export default {
   login: getEmulatorUrl("user/login"),
 
   createTransfer: getCoreUrl("create"),
+  createTransferEmailLink: id => getCoreUrl(`${id}/new_email_link`),
   getTransfers: id => getCoreUrl(`get_by_user/${id}`),
+
+  putEmail: getCoreUrl("put_email"),
+  addMoney: userId => getEmulatorUrl(`account/${userId}/add`),
 };

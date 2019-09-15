@@ -12,6 +12,7 @@ const Organization = props => {
     addModal: false,
     finishModal: false,
   });
+  const [currentTransactionId, setCurrentTransactionId] = React.useState("");
 
   useEffect(() => {
     props.getTransactions();
@@ -55,12 +56,17 @@ const Organization = props => {
       <AddTransactionModal
         isOpen={modals["addModal"]}
         handleClose={closeModal("addModal")}
-        createTransaction={createTransaction}
+        createTransaction={props.createTransaction}
       />
       <FinishTransactionModal
         isOpen={modals["finishModal"]}
         handleClose={closeModal("finishModal")}
       />
+      {/* <ShareTransactionUrl
+        isOpen={modals["shareModal"]}
+        handleClose={closeModal("shareModal")}
+        currentId={currentTransactionId}
+      /> */}
     </div>
   );
 };

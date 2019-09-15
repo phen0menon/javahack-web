@@ -23,16 +23,16 @@ export const createTransaction = data => (dispatch, getState) => {
   const { token: id } = getState().user;
   const payload = { ...data, userId: id };
 
-  dispatch({ type: ActionTypes.TRANSACTION_ACTION_TYPES.CREATE_TRANSACTION_START });
+  dispatch({ type: ActionTypes.TRANSACTION_ACTION_TYPES.TRANSACTION_ADD_START });
   return postRequest(apiRoutes.createTransfer, payload)
     .then(json => {
       dispatch({
-        type: ActionTypes.TRANSACTION_ACTION_TYPES.CREATE_TRANSACTION_SUCCEED,
+        type: ActionTypes.TRANSACTION_ACTION_TYPES.TRANSACTION_ADD_SUCCEED,
         payload: json,
       });
       return json;
     })
     .catch(err => {
-      dispatch({ type: ActionTypes.TRANSACTION_ACTION_TYPES.CREATE_TRANSACTION_FAIL });
+      dispatch({ type: ActionTypes.TRANSACTION_ACTION_TYPES.TRANSACTION_ADD_FAIL });
     });
 };
